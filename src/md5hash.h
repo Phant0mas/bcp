@@ -1,7 +1,17 @@
 /**
-*	This file is written from Manolis 'phant0mas' Ragkousis 
-*	as part of the bcp project from Jordan Wilberding aka jwilberding
+*	This file is part of the bcp project from Jordan Wilberding aka jwilberding
 *
 * 	This file is distributed under the terms of the GNU/GPL v3 license.
-* 	See the file LICENSE in the root folder of the project for more information.
+* 	See the file LICENSE folder in the root folder of the project for more information.
 **/
+#ifndef MD5HASH_H_INCLUDED
+#define MD5HASH_H_INCLUDED
+
+#include <stdio.h>
+
+#include <openssl/md5.h>
+//we use the openssl md5 library for our purpose 
+
+
+
+#endif
