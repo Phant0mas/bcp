@@ -39,11 +39,12 @@
 #define MAXBUFLEN 1024        // buffer size for packets
 #define MAXNAMELEN 255        // max filename length
 
-int file_exists (char *filename)
-{
-  struct stat buffer;
-  return (stat (filename, &buffer) == 0);
-}
+
+//int file_exists (char *filename)
+//{
+//  struct stat buffer;
+//  return (stat (filename, &buffer) == 0);
+//}
 
 // get sockaddr, IPv4 or IPv6:
 void *get_in_addr(struct sockaddr *sa)
