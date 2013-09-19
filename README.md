@@ -1,14 +1,12 @@
 # Broadcast Copy
 
-Any easy way to copy files between terminals or computers on a local network.
+An easy way to copy files between terminals or computers on a local network.
 
 Note: bcp currently assumes a trusted network, use with caution
 
 # Compiling
 
 make
-or
-gcc -D_FILE_OFFSET_BITS=64 -o bcp bcp.c
 
 # Installation
 
@@ -16,10 +14,7 @@ gcc -D_FILE_OFFSET_BITS=64 -o bcp bcp.c
 $ make install
 ```
 
- One line install:
-```
-$ bash -c "mkdir /tmp/bcp && cd /tmp/bcp && curl -L# https://github.com/jgallen23/bcp/archive/master.tar.gz | tar zx --strip 1 && make install"
-```
+ 
 
 In OSX, you can use @gil's homebrew solution: https://github.com/gil/homebrew-bcp
 

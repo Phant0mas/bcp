@@ -13,6 +13,8 @@
     but don't have anything to do with networking 
 */
 
+#include "control.h"
+
 int file_exists (char *filename)//checks if file exists on the server side
 {
   struct stat buffer;
@@ -28,3 +30,7 @@ ssize_t recv_full(int fd, void *buf, ssize_t len)
   return p - (char *)buf;
 }
 
+void sigchld_handler(int s)
+{
+  while(waitpid(-1, NULL, WNOHANG) > 0);
+}

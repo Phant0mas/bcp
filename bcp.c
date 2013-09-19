@@ -22,15 +22,13 @@
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
-#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-#include <sys/wait.h>
 #include <signal.h>
-#include <sys/stat.h>
 #include <libgen.h>
+#include "lib/control.h"
 
 #define BROADCAST_PORT 4950   // default udp port
 #define BCP_CODE 3141593      // have a unique code to verify broadcast
@@ -39,12 +37,6 @@
 #define MAXBUFLEN 1024        // buffer size for packets
 #define MAXNAMELEN 255        // max filename length
 
-
-//int file_exists (char *filename)
-//{
-//  struct stat buffer;
-//  return (stat (filename, &buffer) == 0);
-//}
 
 // get sockaddr, IPv4 or IPv6:
 void *get_in_addr(struct sockaddr *sa)
@@ -87,7 +79,6 @@ void listener(char *ip, int *port)
       perror("listener: socket");
       continue;
     }
-
     if (bind(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
       close(sockfd);
       perror("listener: bind");
@@ -175,19 +166,12 @@ void broadcaster()
   close(sockfd);
 }
 
-void sigchld_handler(int s)
-{
-  while(waitpid(-1, NULL, WNOHANG) > 0);
-}
-
-ssize_t recv_full(int fd, void *buf, ssize_t len)
-{
-  char *p = buf;
-  ssize_t recvd;
-  for (recvd = 1; len > 0 && recvd > 0; len -= recvd, p += recvd)
-    recvd = recv(fd, p, len, 0);
-  return p - (char *)buf;
-}
+/********************************************/
+/* void sigchld_handler(int s)		    */
+/* {					    */
+/*   while(waitpid(-1, NULL, WNOHANG) > 0); */
+/* }					    */
+/********************************************/
 
 void server(int port)
 {
